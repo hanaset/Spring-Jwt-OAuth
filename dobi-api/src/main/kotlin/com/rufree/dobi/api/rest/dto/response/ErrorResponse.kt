@@ -1,7 +1,7 @@
 package com.rufree.dobi.api.rest.dto.response
 
 import com.rufree.dobi.api.exception.ErrorCode
-import com.rich.joint.api.exception.DobiApiException
+import com.rufree.dobi.api.exception.DobiApiException
 import org.springframework.validation.BindingResult
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException
 

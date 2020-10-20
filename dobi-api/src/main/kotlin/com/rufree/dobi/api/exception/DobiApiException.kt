@@ -1,6 +1,4 @@
-package com.rich.joint.api.exception
-
-import com.rufree.dobi.api.exception.ErrorCode
+package com.rufree.dobi.api.exception
 
 open class DobiApiException(
     val code: ErrorCode,
@@ -8,3 +6,5 @@ open class DobiApiException(
 ) : RuntimeException(
         message ?: code.message
 )
+
+class DobiApiExistUserException: DobiApiException(ErrorCode.EXIST_USER)
