@@ -1,6 +1,6 @@
-package com.rich.joint.api.rest.dto.response
+package com.rufree.dobi.api.rest.dto.response
 
-import com.rich.joint.common.toSeoulEpochSecond
+import com.rufree.dobi.common.toSeoulEpochSecond
 import java.time.LocalDateTime
 import java.time.ZonedDateTime
 

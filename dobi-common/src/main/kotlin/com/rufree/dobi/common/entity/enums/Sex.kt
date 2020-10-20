@@ -1,4 +1,4 @@
-package com.rich.joint.common.entity.enums
+package com.rufree.dobi.common.entity.enums
 
 enum class Sex {
     MALE, FEMALE

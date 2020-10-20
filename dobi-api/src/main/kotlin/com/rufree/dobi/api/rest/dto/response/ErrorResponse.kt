@@ -1,7 +1,7 @@
-package com.rich.joint.api.rest.dto.response
+package com.rufree.dobi.api.rest.dto.response
 
-import com.rich.joint.api.exception.ErrorCode
-import com.rich.joint.api.exception.JointApiException
+import com.rufree.dobi.api.exception.ErrorCode
+import com.rich.joint.api.exception.DobiApiException
 import org.springframework.validation.BindingResult
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException
 
@@ -27,7 +27,7 @@ class ErrorResponse private constructor(
         errors = FieldError.ofList(e)
     }
 
-    constructor(code: ErrorCode, e: JointApiException) : this(code, e.message ?: code.message) {
+    constructor(code: ErrorCode, e: DobiApiException) : this(code, e.message ?: code.message) {
         errors = FieldError.ofEmptyList()
     }
 

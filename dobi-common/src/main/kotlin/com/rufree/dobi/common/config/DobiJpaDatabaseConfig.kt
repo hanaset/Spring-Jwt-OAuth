@@ -19,75 +19,75 @@ import javax.sql.DataSource
 
 @Configuration
 @ComponentScan(basePackages = [
-    "com.rich.joint.common.repository"
+    "com.rufree.dobi.common.repository"
 ])
 @EnableJpaRepositories(
-        basePackages = ["com.rich.joint.common.repository"],
-        entityManagerFactoryRef = "jointEntityManagerFactory",
-        transactionManagerRef = "jointTransactionManager"
+        basePackages = ["com.rufree.dobi.common.repository"],
+        entityManagerFactoryRef = "dobiEntityManagerFactory",
+        transactionManagerRef = "dobiTransactionManager"
 )
-@PropertySource("classpath:properties/database/joint-database-\${spring.profiles.active}.properties")
-class JointJpaDatabaseConfig(private val mbeanExporter: MBeanExporter) {
+@PropertySource("classpath:properties/database/dobi-database-\${spring.profiles.active}.properties")
+class DobiJpaDatabaseConfig(private val mbeanExporter: MBeanExporter) {
 
     @Bean
     @Primary
-    @ConfigurationProperties(prefix = "joint.jpa")
-    fun jointJpaProperties(): JpaProperties {
+    @ConfigurationProperties(prefix = "dobi.jpa")
+    fun dobiJpaProperties(): JpaProperties {
         return JpaProperties()
     }
 
     @Bean
     @Primary
-    fun jointHibernateSettings(): HibernateSettings {
+    fun dobiHibernateSettings(): HibernateSettings {
         return HibernateSettings()
     }
 
     @Bean
     @Primary
-    @ConfigurationProperties(prefix = "joint")
-    fun jointHikariConfig(): HikariConfig {
+    @ConfigurationProperties(prefix = "dobi")
+    fun dobiHikariConfig(): HikariConfig {
         return HikariConfig()
     }
 
     @Bean
     @Primary
-    fun jointDataSource(): DataSource {
-        val dataSource = HikariDataSource(jointHikariConfig())
-        mbeanExporter.addExcludedBean("jointDataSource")
+    fun dobiDataSource(): DataSource {
+        val dataSource = HikariDataSource(dobiHikariConfig())
+        mbeanExporter.addExcludedBean("dobiDataSource")
         return dataSource
     }
 
     @Bean
     @Primary
-    fun jointEntityManagerFactory(builder: EntityManagerFactoryBuilder): LocalContainerEntityManagerFactoryBean {
+    fun dobiEntityManagerFactory(builder: EntityManagerFactoryBuilder): LocalContainerEntityManagerFactoryBean {
         return builder
-                .dataSource(jointDataSource())
-                .packages("com.rich.joint.common.entity")
-                .persistenceUnit("jointPersistenceUnit")
-                .properties(getVendorProperties(jointDataSource()))
+                .dataSource(dobiDataSource())
+                .packages("com.rufree.dobi.common.entity")
+                .persistenceUnit("dobiPersistenceUnit")
+                .properties(getVendorProperties(dobiDataSource()))
                 .build()
     }
 
     private fun getVendorProperties(dataSource: DataSource): Map<String, String> {
-        var properties = jointJpaProperties().properties
+        var properties = dobiJpaProperties().properties
 //        properties.put("hibernate.dialec", "org.hibernate.dialect.MySQL5InnoDBDialect")
         return properties
     }
 
-    @Bean(name = ["jointJdbcTemplate"])
-    fun jointJdbcTemplate(@Qualifier("jointDataSource") dataSource: DataSource): JdbcTemplate {
+    @Bean(name = ["dobiJdbcTemplate"])
+    fun dobiJdbcTemplate(@Qualifier("dobiDataSource") dataSource: DataSource): JdbcTemplate {
         return JdbcTemplate(dataSource)
     }
 
     @Bean
     @Primary
-    fun jointTransactionManager(builder: EntityManagerFactoryBuilder): PlatformTransactionManager {
-        return JpaTransactionManager(jointEntityManagerFactory(builder).getObject()!!)
+    fun dobiTransactionManager(builder: EntityManagerFactoryBuilder): PlatformTransactionManager {
+        return JpaTransactionManager(dobiEntityManagerFactory(builder).getObject()!!)
     }
 
     @Bean
     @Primary
-    fun jointTransactionTemplate(builder: EntityManagerFactoryBuilder): TransactionTemplate {
-        return TransactionTemplate(jointTransactionManager(builder))
+    fun dobiTransactionTemplate(builder: EntityManagerFactoryBuilder): TransactionTemplate {
+        return TransactionTemplate(dobiTransactionManager(builder))
     }
 }

@@ -1,8 +1,8 @@
-package com.rich.joint.common.entity
+package com.rufree.dobi.common.entity
 
-import com.rich.joint.common.entity.enums.SocialType
-import com.rich.joint.common.entity.enums.Role
-import com.rich.joint.common.entity.enums.Sex
+import com.rufree.dobi.common.entity.enums.Role
+import com.rufree.dobi.common.entity.enums.Sex
+import com.rufree.dobi.common.entity.enums.SocialType
 import java.time.ZonedDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -24,19 +24,18 @@ class User(
     @Enumerated(value = EnumType.STRING)
     val socialType: SocialType,
 
-    @Enumerated(value = EnumType.STRING)
-    val role: Role = Role.LEVEL1,
-
     val name: String,
+
+    var nickname: String,
 
     val email: String,
 
-    val phone: String? = null,
+    var phone: String,
 
     @Enumerated(value = EnumType.STRING)
-    val sex: Sex? = null,
+    var sex: Sex,
 
-    val birthday: String? = null,
+    var birthday: String,
 
     @Column(name = "last_login")
     var lastLogin: ZonedDateTime = ZonedDateTime.now(),

@@ -1,5 +1,5 @@
-package com.rich.joint.common.entity.enums
+package com.rufree.dobi.common.entity.enums
 
 enum class SocialType {
-    GOOGLE, KAKAO, APPLE, NAVER
+    GOOGLE, KAKAO, APPLE
 }

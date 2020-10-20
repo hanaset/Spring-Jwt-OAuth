@@ -1,4 +1,4 @@
-package com.rich.joint.common.entity
+package com.rufree.dobi.common.entity
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
