@@ -12,14 +12,10 @@ dependencies {
 
     // cache
     implementation("org.ehcache:ehcache:3.8.1")
-    implementation("org.springframework.boot:spring-boot-starter-cache:2.2.6.RELEASE")
+    implementation("org.springframework.boot:spring-boot-starter-cache:2.3.4.RELEASE")
     implementation("javax.cache:cache-api:1.1.1")
 
-    implementation ("org.springframework.boot:spring-boot-starter-oauth2-client")
     implementation ("org.springframework.boot:spring-boot-starter-security")
-
-    implementation("org.springframework.session:spring-session-jdbc")
-
 
     // jsoup
     implementation("org.jsoup:jsoup:1.13.1")
