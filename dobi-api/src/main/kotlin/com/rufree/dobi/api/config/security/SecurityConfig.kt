@@ -5,18 +5,19 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 
-//@EnableWebSecurity
-//class SecurityConfig: WebSecurityConfigurerAdapter() {
-//
-//    override fun configure(http: HttpSecurity?) {
-//
-//        if(http == null)
-//            return
-//
-//        http.csrf().disable()
-//            .authorizeRequests()
+@EnableWebSecurity
+class SecurityConfig: WebSecurityConfigurerAdapter() {
+
+    override fun configure(http: HttpSecurity?) {
+
+        if(http == null)
+            return
+
+        http.csrf().disable()
+            .authorizeRequests()
+                .antMatchers("/**").permitAll()
 //            .antMatchers("/", "/health").permitAll()
 //            .antMatchers("/api/v1/**").hasRole(Role.LEVEL1.name)
-//            .anyRequest().authenticated()
-//    }
-//}
+            .anyRequest().authenticated()
+    }
+}

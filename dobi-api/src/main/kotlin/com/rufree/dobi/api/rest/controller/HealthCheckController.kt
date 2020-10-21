@@ -1,4 +1,4 @@
-package com.rufree.dobi.api.rest
+package com.rufree.dobi.api.rest.controller
 
 import com.rufree.dobi.api.rest.dto.response.HealthCheckResponse
 import com.rich.joint.api.rest.support.RestSupport
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.time.ZonedDateTime
 
 @RestController
-class HealthCheckRestController(
+class HealthCheckController(
         private val buildProperties: BuildProperties,
         private val environment: Environment
 ) : RestSupport() {

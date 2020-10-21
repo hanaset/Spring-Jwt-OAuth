@@ -10,8 +10,8 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name = "user_role")
-class UserRole(
+@Table(name = "user_authority")
+class UserAuthority(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = -1,

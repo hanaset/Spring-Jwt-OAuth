@@ -23,6 +23,8 @@ dependencies {
     // jackson
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
+    implementation("com.google.apis:google-api-services-people:v1-rev20201013-1.30.10")
+
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 

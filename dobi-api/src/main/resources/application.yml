@@ -6,3 +6,8 @@ spring:
 
 server:
   port: 5000
+
+kakao:
+  url:
+    auth: kauth.kakao.com
+    api: https://kapi.kakao.com/

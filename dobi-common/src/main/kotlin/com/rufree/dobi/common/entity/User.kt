@@ -37,6 +37,8 @@ class User(
 
     var birthday: String,
 
+    var profile: String = "",
+
     @Column(name = "last_login")
     var lastLogin: ZonedDateTime = ZonedDateTime.now(),
 
