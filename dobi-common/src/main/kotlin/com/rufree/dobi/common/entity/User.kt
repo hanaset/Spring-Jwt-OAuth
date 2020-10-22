@@ -1,6 +1,5 @@
 package com.rufree.dobi.common.entity
 
-import com.rufree.dobi.common.entity.enums.Role
 import com.rufree.dobi.common.entity.enums.Sex
 import com.rufree.dobi.common.entity.enums.SocialType
 import java.time.ZonedDateTime
@@ -44,4 +43,4 @@ class User(
 
     var active: Boolean = true
 
-): AbstractBaseAuditEntity()
+) : AbstractBaseAuditEntity()

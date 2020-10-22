@@ -14,6 +14,7 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter")
     api("org.springframework.boot:spring-boot-starter-data-jpa")
     api("org.springframework.boot:spring-boot-starter-web")
+    implementation ("org.springframework.boot:spring-boot-starter-security")
 
     api("com.squareup.retrofit2:retrofit:2.6.0")
     api("com.squareup.retrofit2:converter-gson:2.6.0")

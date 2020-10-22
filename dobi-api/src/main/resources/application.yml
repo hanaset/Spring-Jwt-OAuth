@@ -11,3 +11,6 @@ kakao:
   url:
     auth: kauth.kakao.com
     api: https://kapi.kakao.com/
+
+dobi:
+  jwt:

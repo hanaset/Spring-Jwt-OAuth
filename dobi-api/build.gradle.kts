@@ -20,6 +20,9 @@ dependencies {
     // jsoup
     implementation("org.jsoup:jsoup:1.13.1")
 
+    // JWT Token
+    implementation ("io.jsonwebtoken:jjwt:0.9.1")
+
     // jackson
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 

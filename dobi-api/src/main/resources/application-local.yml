@@ -1,2 +1,5 @@
 kakao:
   client_id: b0ed018f965d5d537e4daae7f8d899ee
+
+dobi:
+  jwt: dobo_local
