@@ -8,4 +8,4 @@ open class DobiApiException(
 )
 
 class DobiApiExistUserException: DobiApiException(ErrorCode.EXIST_USER)
-class DoibApiNotFoundUserException: DobiApiException(ErrorCode.NOT_FOUND_USER)
+class DobiApiNotFoundUserException: DobiApiException(ErrorCode.NOT_FOUND_USER)

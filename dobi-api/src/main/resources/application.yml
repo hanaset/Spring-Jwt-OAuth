@@ -9,8 +9,10 @@ server:
 
 kakao:
   url:
-    auth: kauth.kakao.com
+    auth: https://kauth.kakao.com/
     api: https://kapi.kakao.com/
 
 dobi:
   jwt:
+    secret:
+    expiration: 14800

@@ -1,23 +1,14 @@
 package com.rufree.dobi.common.entity
 
-import com.rufree.dobi.common.entity.enums.Role
-import javax.persistence.Entity
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Table
+import com.rufree.dobi.common.entity.enums.AuthorityName
+import javax.persistence.*
 
 @Entity
 @Table(name = "user_authority")
 class UserAuthority(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = -1,
+        @Id
+        val uid: Long,
 
-    val uid: Long,
-
-    @Enumerated(value = EnumType.STRING)
-    val role: Role
-): AbstractBaseAuditEntity()
+        @Column(name = "authority_id")
+        var authorityId: Long
+) : AbstractBaseAuditEntity()

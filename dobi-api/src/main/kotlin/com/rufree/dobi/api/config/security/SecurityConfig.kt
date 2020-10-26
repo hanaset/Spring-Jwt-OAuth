@@ -12,7 +12,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 class SecurityConfig(
-    private val jwtTokenProvider: JwtTokenProvider
+        private val jwtTokenProvider: JwtTokenProvider
 ) : WebSecurityConfigurerAdapter() {
 
     @Bean
@@ -23,17 +23,25 @@ class SecurityConfig(
     override fun configure(http: HttpSecurity?) {
 
         http!!
-            .csrf().disable()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .authorizeRequests()
-            .antMatchers("/**").permitAll()
-//            .antMatchers("/", "/health").permitAll()
-//            .antMatchers("/api/v1/**").hasRole(Role.LEVEL1.name)
-            .anyRequest().authenticated()
-            .and()
-            .addFilterBefore(JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter::class.java)
-            .formLogin().disable()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers(
+                        "/**",
+
+                        // swagger
+                        "/v2/api-docs", "/configuration/ui",
+                        "/swagger-resources", "/configuration/security",
+                        "/swagger-ui.html", "/webjars/**", "/swagger/**"
+                )
+                .permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().disable()
+
+        http
+                .addFilterBefore(JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter::class.java)
 
     }
 }

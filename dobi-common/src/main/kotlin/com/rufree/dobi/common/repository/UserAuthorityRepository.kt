@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface UserAuthorityRepository: JpaRepository<UserAuthority, Long> {
-    fun findByUid(uid: Long): List<UserAuthority>
-    fun findByUidAndRole(uid: Long, authority: UserAuthority): UserAuthority?
+
+    fun findByUid(uid: Long): UserAuthority?
 }
