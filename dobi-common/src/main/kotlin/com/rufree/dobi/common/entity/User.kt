@@ -16,18 +16,18 @@ class User(
     @Enumerated(value = EnumType.STRING)
     val socialType: SocialType,
 
-    val name: String,
+    val name: String? = null,
 
     var nickname: String,
 
     val email: String,
 
-    var phone: String,
+    var phone: String? = null,
 
     @Enumerated(value = EnumType.STRING)
-    var sex: Sex,
+    var sex: Sex? = null,
 
-    var birthday: String,
+    var birthday: String? = null,
 
     var profile: String = "",
 

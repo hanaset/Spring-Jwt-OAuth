@@ -10,6 +10,8 @@ interface UserRepository: JpaRepository<User, Long> {
 
     fun existsByEmailAndActive(email: String, active: Boolean = true): Boolean
 
+    fun existsByEmailAndSocialTypeAndActive(email: String, socialType: SocialType, active: Boolean = true): Boolean
+
     fun findByEmailAndActive(email: String, active: Boolean = true): User?
 
     fun findByEmailAndSocialTypeAndActive(email: String, socialType: SocialType, active: Boolean = true): User?

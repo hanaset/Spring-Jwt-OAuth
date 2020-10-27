@@ -1,6 +1,7 @@
 package com.rufree.dobi.api.security.service
 
 import com.rufree.dobi.api.exception.DobiApiNotFoundUserException
+import com.rufree.dobi.api.security.JwtUserFactory
 import com.rufree.dobi.common.repository.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -16,6 +17,6 @@ class JwtUserDetailsService(
         val user = userRepository.findByEmailAndActive(username ?: throw DobiApiNotFoundUserException())
                 ?: throw DobiApiNotFoundUserException()
 
-        return JwtFactory.create(user)
+        return JwtUserFactory.create(user)
     }
 }

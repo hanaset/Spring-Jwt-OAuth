@@ -1,6 +1,7 @@
 package com.rufree.dobi.api.rest.controller.signin
 
-import com.rich.joint.api.rest.support.RestSupport
+import com.rufree.dobi.api.rest.support.RestSupport
+import com.rufree.dobi.api.service.KakaoAuthService
 import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
@@ -15,7 +16,8 @@ import javax.servlet.http.HttpServletRequest
 @Api(tags = ["카카오 백엔드 회원가입"])
 @Controller
 class KakaoBackendSigninController(
-        @Value("\${kakao.client_id}") private val clientId: String
+        @Value("\${kakao.client_id}") private val clientId: String,
+        private val kakaoAuthService: KakaoAuthService
 ) : RestSupport() {
 
 
@@ -31,6 +33,7 @@ class KakaoBackendSigninController(
 
     @GetMapping("/api/v1/kakao/backend/signin/callback")
     fun kakaoBackendSigninCallback(request: HttpServletRequest, @RequestParam("code") code: String): ResponseEntity<*> {
+        kakaoAuthService.kakaoAuth(code, clientId, "http://localhost:5000/api/v1/kakao/backend/signin/callback")
         return response("")
     }
 }

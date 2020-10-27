@@ -1,6 +1,6 @@
 package com.rufree.dobi.api.client.kakao
 
-import com.rufree.dobi.api.client.kakao.dto.KakaoTokenResponse
+import com.rufree.dobi.api.client.kakao.dto.response.KakaoTokenResponse
 import retrofit2.Call
 import retrofit2.http.Headers
 import retrofit2.http.POST

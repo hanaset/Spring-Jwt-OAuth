@@ -8,7 +8,7 @@ import javax.persistence.*
 class Authority(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
+        val id: Long = -1,
 
         @Enumerated(EnumType.STRING)
         @Column(name = "name")

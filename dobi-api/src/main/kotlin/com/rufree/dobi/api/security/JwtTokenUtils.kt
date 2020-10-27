@@ -1,4 +1,4 @@
-package com.rufree.dobi.api.security.service
+package com.rufree.dobi.api.security
 
 import com.rufree.dobi.common.entity.enums.AuthorityName
 import io.jsonwebtoken.Claims
@@ -12,12 +12,15 @@ import java.util.function.Function
 
 @Component
 class JwtTokenUtils(
-        @Value("\${jwt.secret}") private val secretKey: String,
-        @Value("\${jw.expiration}") private val expiration: Long
+    @Value("\${jwt.secret}") private val secretKey: String,
+    @Value("\${jwt.expiration}") private val expiration: Long
 ) {
 
+    companion object {
+        const val AUDIENCE_MOBILE = "mobile"
+    }
 
-    fun getUsernameFromToken(token: String): String {
+    fun getUsernameFromToken(token: String): String? {
         return getClaimFromToken(token, Function { obj: Claims -> obj.subject })
     }
 
@@ -29,7 +32,7 @@ class JwtTokenUtils(
         return getClaimFromToken(token, Function { obj: Claims -> obj.expiration })
     }
 
-    fun getAudienceFromToken(token: String): String {
+    fun getAudienceFromToken(token: String): String? {
         return getClaimFromToken(token, Function { obj: Claims -> obj.audience })
     }
 
@@ -50,10 +53,18 @@ class JwtTokenUtils(
         return expiration.before(Date())
     }
 
+    private fun generateAudience(): String { return AUDIENCE_MOBILE }
+
+
+    private fun ignoreTokenExpiration(token: String): Boolean {
+        val audience = getAudienceFromToken(token)
+        return AUDIENCE_MOBILE == audience
+    }
+
     fun generateToken(userDetails: UserDetails, authorities: List<AuthorityName>): String {
         val claims = mutableMapOf<String, Any>()
         claims["authority"] = authorities
-        return doGenerateToken(claims, userDetails.username)
+        return doGenerateToken(claims, userDetails.username, generateAudience())
     }
 
     private fun doGenerateToken(claims: Map<String, Any>, subject: String, audience: String): String {
@@ -70,6 +81,13 @@ class JwtTokenUtils(
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.ES512, secretKey)
                 .compact()
+    }
+
+    fun validateToken(token: String, userDetails: UserDetails): Boolean {
+        val user = userDetails as JwtUser
+        val username = getUsernameFromToken(token)
+        val created = getIssuedAtDateFromToken(token)
+        return username == user.username && !isTokenExpired(token)
     }
 
     private fun calculateExpirationDate(createdDate: Date): Date? {

@@ -1,7 +1,7 @@
 package com.rufree.dobi.api.client.kakao
 
 import com.rufree.dobi.api.client.AbstractClient
-import com.rufree.dobi.api.client.kakao.dto.KakaoUserResponse
+import com.rufree.dobi.api.client.kakao.dto.response.KakaoUserResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component

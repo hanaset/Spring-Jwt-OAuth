@@ -12,7 +12,8 @@ kakao:
     auth: https://kauth.kakao.com/
     api: https://kapi.kakao.com/
 
-dobi:
-  jwt:
-    secret:
-    expiration: 14800
+
+jwt:
+  secret:
+  expiration: 14800
+  header: Authorization
