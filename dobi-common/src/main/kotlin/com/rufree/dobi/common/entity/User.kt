@@ -16,7 +16,12 @@ class User(
     @Enumerated(value = EnumType.STRING)
     val socialType: SocialType,
 
-    val name: String? = null,
+    @Column(name = "provider_id")
+    val providerId: String,
+
+    val username: String,
+
+    val password: String,
 
     var nickname: String,
 
@@ -29,7 +34,8 @@ class User(
 
     var birthday: String? = null,
 
-    var profile: String = "",
+    @Column(name = "profile_image")
+    var profileImage: String = "",
 
     @Column(name = "last_login")
     var lastLogin: ZonedDateTime = ZonedDateTime.now(),

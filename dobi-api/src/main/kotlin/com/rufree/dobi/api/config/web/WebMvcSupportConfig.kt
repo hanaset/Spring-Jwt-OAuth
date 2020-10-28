@@ -1,5 +1,7 @@
 package com.rufree.dobi.api.config.web
 
+import com.rufree.dobi.api.config.web.resolver.AuthenticationTokenResolver
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.cors.CorsConfiguration
@@ -10,7 +12,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport
 
 @Configuration
-class WebMvcSupportConfig : WebMvcConfigurationSupport() {
+class WebMvcSupportConfig(
+    @Value("\${jwt.header}") private val header: String
+) : WebMvcConfigurationSupport() {
 
     @Bean
     fun corsFilter(): CorsFilter? {
@@ -35,5 +39,6 @@ class WebMvcSupportConfig : WebMvcConfigurationSupport() {
     }
 
     override fun addArgumentResolvers(argumentResolvers: MutableList<HandlerMethodArgumentResolver>) {
+        argumentResolvers.add(AuthenticationTokenResolver(header))
     }
 }

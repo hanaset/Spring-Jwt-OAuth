@@ -1,5 +1,6 @@
-package com.rufree.dobi.api.rest.controller.signin
+package com.rufree.dobi.api.rest.controller
 
+import com.rufree.dobi.api.rest.dto.request.SigninRequest
 import com.rufree.dobi.api.rest.support.RestSupport
 import com.rufree.dobi.api.service.KakaoAuthService
 import io.swagger.annotations.Api
@@ -33,7 +34,6 @@ class KakaoBackendSigninController(
 
     @GetMapping("/api/v1/kakao/backend/signin/callback")
     fun kakaoBackendSigninCallback(request: HttpServletRequest, @RequestParam("code") code: String): ResponseEntity<*> {
-        kakaoAuthService.kakaoAuth(code, clientId, "http://localhost:5000/api/v1/kakao/backend/signin/callback")
-        return response("")
+        return response(kakaoAuthService.kakaoSignIn(SigninRequest(code = code, redirectUri = "http://localhost:5000/api/v1/kakao/backend/signin/callback", agreementMarketingRecv = true)))
     }
 }

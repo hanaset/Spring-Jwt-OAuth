@@ -61,9 +61,9 @@ class JwtTokenUtils(
         return AUDIENCE_MOBILE == audience
     }
 
-    fun generateToken(userDetails: UserDetails, authorities: List<AuthorityName>): String {
+    fun generateToken(userDetails: UserDetails): String {
         val claims = mutableMapOf<String, Any>()
-        claims["authority"] = authorities
+        claims["authority"] = userDetails.authorities
         return doGenerateToken(claims, userDetails.username, generateAudience())
     }
 
@@ -79,7 +79,7 @@ class JwtTokenUtils(
                 .setAudience(audience)
                 .setIssuedAt(now)
                 .setExpiration(expirationDate)
-                .signWith(SignatureAlgorithm.ES512, secretKey)
+                .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact()
     }
 

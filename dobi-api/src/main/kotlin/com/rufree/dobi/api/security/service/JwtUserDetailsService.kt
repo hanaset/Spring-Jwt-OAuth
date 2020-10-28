@@ -12,10 +12,9 @@ class JwtUserDetailsService(
         private val userRepository: UserRepository
 ): UserDetailsService {
 
-    override fun loadUserByUsername(username: String?): UserDetails {
+    override fun loadUserByUsername(username: String): UserDetails {
 
-        val user = userRepository.findByEmailAndActive(username ?: throw DobiApiNotFoundUserException())
-                ?: throw DobiApiNotFoundUserException()
+        val user = userRepository.findByUsernameAndActive(username) ?: throw DobiApiNotFoundUserException()
 
         return JwtUserFactory.create(user)
     }

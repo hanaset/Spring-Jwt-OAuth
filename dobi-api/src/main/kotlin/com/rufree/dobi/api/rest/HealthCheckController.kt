@@ -1,4 +1,4 @@
-package com.rufree.dobi.api.rest.controller
+package com.rufree.dobi.api.rest
 
 import com.rufree.dobi.api.rest.dto.response.HealthCheckResponse
 import com.rufree.dobi.api.rest.support.RestSupport

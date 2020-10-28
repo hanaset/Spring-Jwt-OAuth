@@ -10,9 +10,13 @@ class JwtUserFactory {
     companion object {
         fun create(user: User): JwtUser {
             return JwtUser(
-                    uid = user.id,
-                    email = user.email,
-                    authorities = mapToGrantedAuthorities(user.authorities)
+                uid = user.id,
+                nickname = user.nickname,
+                username = user.username,
+                socialType = user.socialType,
+                password = user.password,
+                email = user.email,
+                authorities = mapToGrantedAuthorities(user.authorities)
             )
         }
 
