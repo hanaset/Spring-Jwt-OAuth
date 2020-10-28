@@ -31,7 +31,7 @@ class UserAuthService(
 
     @Transactional
     fun createUser(providerId: Long, email: String, profileImage: String, nickname: String, socialType: SocialType): User {
-        val authorities = authorityRepository.findByAuthorityName(AuthorityName.LEVEL0)
+        val authorities = authorityRepository.findByAuthorityName(AuthorityName.ROLE_LEVEL0)
 
         val user = User(
             providerId = providerId.toString(),

@@ -55,6 +55,7 @@ class SecurityConfig(
             .authorizeRequests()
             .antMatchers(
                 "/api/v1/kakao/backend/**",
+                "/api/v1/user/**",
 
                 // swagger
                 "/v2/api-docs", "/configuration/ui",
@@ -62,8 +63,7 @@ class SecurityConfig(
                 "/swagger-ui.html", "/webjars/**", "/swagger/**"
             )
             .permitAll()
-            .and()
-            .formLogin().disable()
+            .anyRequest().authenticated().and().cors() // @PreAuthorize를 위한 설정
 
         http
             .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter::class.java)

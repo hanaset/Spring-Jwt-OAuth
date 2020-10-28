@@ -1,6 +1,8 @@
 package com.rufree.dobi.api.config.web
 
 import com.rufree.dobi.api.config.web.resolver.AuthenticationTokenResolver
+import com.rufree.dobi.api.security.JwtTokenUtils
+import com.rufree.dobi.common.repository.UserRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -13,7 +15,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 @Configuration
 class WebMvcSupportConfig(
-    @Value("\${jwt.header}") private val header: String
+    @Value("\${jwt.header}") private val header: String,
+    private val jwtTokenUtils: JwtTokenUtils,
+    private val userRepository: UserRepository
 ) : WebMvcConfigurationSupport() {
 
     @Bean
@@ -39,6 +43,6 @@ class WebMvcSupportConfig(
     }
 
     override fun addArgumentResolvers(argumentResolvers: MutableList<HandlerMethodArgumentResolver>) {
-        argumentResolvers.add(AuthenticationTokenResolver(header))
+        argumentResolvers.add(AuthenticationTokenResolver(header, jwtTokenUtils, userRepository))
     }
 }

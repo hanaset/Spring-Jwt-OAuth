@@ -1,6 +1,5 @@
 package com.rufree.dobi.api.security
 
-import com.rufree.dobi.common.entity.enums.AuthorityName
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm

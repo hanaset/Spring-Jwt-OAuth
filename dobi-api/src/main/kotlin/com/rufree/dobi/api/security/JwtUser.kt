@@ -11,7 +11,7 @@ class JwtUser(
         private val socialType: SocialType,
         private val password: String,
         private val email: String,
-        private val authorities: MutableList<GrantedAuthority>
+        private val authorities: MutableList<out GrantedAuthority>
 ): UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {

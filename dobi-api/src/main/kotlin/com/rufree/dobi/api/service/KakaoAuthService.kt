@@ -35,7 +35,6 @@ class KakaoAuthService(
         val res = kakaoClient.getUserInfo(tokenResult.body()!!.accessToken)
 
         if (!res.isSuccessful) throw DobiApiException(ErrorCode.UNAUTHORIZED_KAKAO, "카카오 유저 정보 조회 에러")
-
         val kakaoRes = res.body()!!
         // 회원가입 여부 확인 후, null일 경우 회원가입
         val user = userRepository.findByProviderIdAndSocialTypeAndActive(providerId = kakaoRes.id.toString(), socialType = SocialType.KAKAO)
@@ -43,7 +42,6 @@ class KakaoAuthService(
 
         val authentication = authenticationManager.authenticate(UsernamePasswordAuthenticationToken(KakaoAccountUtils.getUsernameByKakaoAccount(kakaoRes.id), KakaoAccountUtils.getPasswordByKakaoAccount(kakaoRes.id)))
         val userDetails = userDetailsService.loadUserByUsername(user.username)
-//        val authentication = authenticationManager.authenticate(UsernamePasswordAuthenticationToken(userDetails, null, userDetails.authorities))
         SecurityContextHolder.getContext().authentication = authentication
 
         return SignInResponse(
